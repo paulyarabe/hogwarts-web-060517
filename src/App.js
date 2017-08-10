@@ -4,22 +4,56 @@ import Nav from './components/Nav';
 import PigBrowser from './components/PigBrowser';
 import { getAll } from './porkers_data'
 
+
 const allPigs = getAll()
+function sortbyname(a,b) {
+  if (a.name < b.name)
+    return -1;
+  if (a.name > b.name)
+    return 1;
+    return 0;
+  }
+function sortbyweight(a,b) {
+    if (a["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"] < b["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"])
+      return -1;
+    if (a["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"] > b["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"])
+      return 1;
+      return 0;
+    }
 
 class App extends Component {
   constructor(){
     super();
 
     this.state = {
-      pigs: allPigs
+      pigs: allPigs,
+      arranged_by: "all"
     }
   }
 
+  arrange = (arg) => {
+    this.setState({
+      arranged_by: arg
+    })
+  }
+
+
   render() {
+      let displayPigs = null;
+      let arrangingPigs = [...this.state.pigs]
+      if(this.state.arranged_by === "name"){
+        displayPigs = arrangingPigs.sort(sortbyname)
+      } else if (this.state.arranged_by === "weight") {
+        displayPigs = arrangingPigs.sort(sortbyweight)
+      } else if (this.state.arranged_by === "filter") {
+        displayPigs = arrangingPigs.filter(e => e.greased === true) } else {
+        displayPigs =  this.state.pigs
+      }
+
     return (
       <div className="App">
-        < Nav />
-        < PigBrowser indexPigs={this.state.pigs} />
+        < Nav filter={this.arrange}/>
+        < PigBrowser indexPigs={displayPigs} />
       </div>
     )
   }
