@@ -3,9 +3,10 @@ import './App.css';
 import Nav from './components/Nav';
 import PigBrowser from './components/PigBrowser';
 import { getAll } from './porkers_data'
-
+import Filter from './components/Filter'
 
 const allPigs = getAll()
+
 function sortbyname(a,b) {
   if (a.name < b.name)
     return -1;
@@ -13,6 +14,7 @@ function sortbyname(a,b) {
     return 1;
     return 0;
   }
+
 function sortbyweight(a,b) {
     if (a["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"] < b["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"])
       return -1;
@@ -39,6 +41,7 @@ class App extends Component {
 
 
   render() {
+
       let displayPigs = null;
       let arrangingPigs = [...this.state.pigs]
       if(this.state.arranged_by === "name"){
@@ -50,10 +53,13 @@ class App extends Component {
         displayPigs =  this.state.pigs
       }
 
+
     return (
       <div className="App">
-        < Nav filter={this.arrange}/>
+        < Nav />
+        < Filter filter={this.arrange}/>
         < PigBrowser indexPigs={displayPigs} />
+
       </div>
     )
   }

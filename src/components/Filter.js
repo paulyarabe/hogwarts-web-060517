@@ -1,12 +1,30 @@
 import React from 'react';
+import Nav from './Nav'
+
 
 class Filter extends React.Component {
   constructor(props){
     super(props)
   }
 
-  render(){
-    return
+    handleSelect = (e) =>
+     this.props.filter(e.target.value)
+
+
+    render(){
+      return (
+        <div className="navWrapper">
+          <span>
+              <select onChange={this.handleSelect} className="type" id="type" className="ui selection dropdown">
+            {/* <i className="dropdown icon"></i> */}
+            <option selected value="default">Original Pigs</option>
+            <option value="name">Name</option>
+            <option value="weight">Weight</option>
+            <option value="filter">Filter</option>
+          </select>
+        </span>
+        </div>
+      )
   }
 }
 
