@@ -4,27 +4,22 @@ import Nav from './components/Nav';
 import PigBrowser from './components/PigBrowser';
 import { getAll } from './porkers_data'
 
-const piggies = getAll()
+const allPigs = getAll()
 
 class App extends Component {
-
   constructor(){
     super();
 
     this.state = {
-      pigs: piggies
+      pigs: allPigs
     }
-
   }
 
-
   render() {
-
     return (
       <div className="App">
         < Nav />
-      < PigBrowser indexPigs={this.state.pigs} />
-
+        < PigBrowser indexPigs={this.state.pigs} />
       </div>
     )
   }

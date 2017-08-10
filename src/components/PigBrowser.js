@@ -15,7 +15,7 @@ class PigBrowser extends React.Component {
       <Pig key={index} pig={pig} /> )
 
     return (
-      <div>
+      <div className="ui three stackable cards">
         { pigs }
       </div>
     );
