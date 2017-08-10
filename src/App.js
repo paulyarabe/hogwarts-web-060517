@@ -16,12 +16,12 @@ function sortbyname(a,b) {
   }
 
 function sortbyweight(a,b) {
-    if (a["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"] < b["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"])
-      return -1;
-    if (a["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"] > b["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"])
-      return 1;
-      return 0;
-    }
+  if (a["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"] < b["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"])
+    return -1;
+  if (a["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"] > b["weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"])
+    return 1;
+    return 0;
+  }
 
 class App extends Component {
   constructor(){
@@ -39,20 +39,24 @@ class App extends Component {
     })
   }
 
+  newPigArr = () =>{
+
+    let displayPigs = null
+    let arrangingPigs = [...this.state.pigs]
+    if(this.state.arranged_by === "name"){
+      displayPigs = arrangingPigs.sort(sortbyname)
+    } else if (this.state.arranged_by === "weight") {
+      displayPigs = arrangingPigs.sort(sortbyweight)
+    } else if (this.state.arranged_by === "filter") {
+      displayPigs = arrangingPigs.filter(e => e.greased === true) } else {
+      displayPigs =  this.state.pigs
+    }
+
+    return displayPigs
+  }
 
   render() {
-
-      let displayPigs = null;
-      let arrangingPigs = [...this.state.pigs]
-      if(this.state.arranged_by === "name"){
-        displayPigs = arrangingPigs.sort(sortbyname)
-      } else if (this.state.arranged_by === "weight") {
-        displayPigs = arrangingPigs.sort(sortbyweight)
-      } else if (this.state.arranged_by === "filter") {
-        displayPigs = arrangingPigs.filter(e => e.greased === true) } else {
-        displayPigs =  this.state.pigs
-      }
-
+    let displayPigs = this.newPigArr()
 
     return (
       <div className="App">

@@ -1,14 +1,11 @@
 import React from 'react';
 import Pig from './Pig';
 
-
 class PigBrowser extends React.Component {
 
   constructor(props) {
     super(props)
   }
-
-
 
   render() {
     let pigs = this.props.indexPigs.map((pig, index) =>
@@ -20,7 +17,6 @@ class PigBrowser extends React.Component {
       </div>
     );
   }
-
 }
 
 export default PigBrowser

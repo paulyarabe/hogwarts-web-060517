@@ -10,7 +10,6 @@ class Pig extends React.Component {
     }
   }
 
-
   handleClick = (e) => {
     if (this.state.visible){
       this.setState({ visible: false })
@@ -20,7 +19,6 @@ class Pig extends React.Component {
   }
 
   render() {
-
     var details = null;
     if(this.state.visible){
       details = <div>
