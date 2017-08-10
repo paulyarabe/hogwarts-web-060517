@@ -79,4 +79,4 @@
   }
 ]
 
-export default Hogs
+export const getAll = () => Hogs 

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Nav from './components/Nav';
 import PigBrowser from './components/PigBrowser';
+import { getAll } from './porkers_data'
+
+const piggies = getAll()
 
 class App extends Component {
 
@@ -9,23 +12,19 @@ class App extends Component {
     super();
 
     this.state = {
-      pigs: [{
-        name: "Leggo my eggo",
-        specialty: "babysitting",
-        greased: true,
-        weight: 130.22,
-        medal: "platinum"
-      }]
+      pigs: piggies
     }
 
   }
 
 
   render() {
+
     return (
       <div className="App">
         < Nav />
       < PigBrowser indexPigs={this.state.pigs} />
+
       </div>
     )
   }
